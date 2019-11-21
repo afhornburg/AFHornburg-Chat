@@ -1,5 +1,5 @@
-name: flutter_chat_demo
-description: This is the demo for chat app by Flutter
+name: AFHornburg Chat
+description: Isso é a demo de um aplicativo de troca de mensagens.
 
 dependencies:
   flutter:
