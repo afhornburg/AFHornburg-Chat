@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_chat_demo/Frontend/Constantes.dart';
-import 'package:flutter_chat_demo/Frontend/main.dart';
+import 'package:AFHornburg_Chat/Constantes.dart';
+import 'package:AFHornburg_Chat/main.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -85,12 +85,10 @@ class LoginScreenState extends State<LoginScreen> {
     FirebaseUser firebaseUser = (await firebaseAuth.signInWithCredential(credential)).user;
 
     if (firebaseUser != null) {
-      // Check is already sign up
       final QuerySnapshot result =
           await Firestore.instance.collection('users').where('id', isEqualTo: firebaseUser.uid).getDocuments();
       final List<DocumentSnapshot> documents = result.documents;
       if (documents.length == 0) {
-        // Update data to server if new user
         Firestore.instance.collection('users').document(firebaseUser.uid).setData({
           'nickname': firebaseUser.displayName,
           'photoUrl': firebaseUser.photoUrl,
@@ -99,13 +97,11 @@ class LoginScreenState extends State<LoginScreen> {
           'chattingWith': null
         });
 
-        // Write data to local
         currentUser = firebaseUser;
         await prefs.setString('id', currentUser.uid);
         await prefs.setString('nickname', currentUser.displayName);
         await prefs.setString('photoUrl', currentUser.photoUrl);
       } else {
-        // Write data to local
         await prefs.setString('id', documents[0]['id']);
         await prefs.setString('nickname', documents[0]['nickname']);
         await prefs.setString('photoUrl', documents[0]['photoUrl']);

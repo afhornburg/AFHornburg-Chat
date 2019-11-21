@@ -5,7 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_chat_demo/Frontend/Constantes.dart';
+import 'package:AFHornburg_Chat/Constantes.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -98,7 +98,7 @@ class SettingsScreenState extends State<SettingsScreen> {
             setState(() {
               isLoading = false;
             });
-            Fluttertoast.showToast(msg: "Upload realizado com sucesso");
+            Fluttertoast.showToast(msg: "Foto atualizada com sucesso");
           }).catchError((err) {
             setState(() {
               isLoading = false;
@@ -264,7 +264,7 @@ class SettingsScreenState extends State<SettingsScreen> {
                       data: Theme.of(context).copyWith(primaryColor: primaryColor),
                       child: TextField(
                         decoration: InputDecoration(
-                          hintText: 'Fun, like travel and play PES...',
+                          hintText: 'Fale um pouco sobre você!',
                           contentPadding: EdgeInsets.all(5.0),
                           hintStyle: TextStyle(color: greyColor),
                         ),
